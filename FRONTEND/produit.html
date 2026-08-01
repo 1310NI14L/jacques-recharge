@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Statut du ticket - Jacques Recharge</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.html">💳 Jacques Recharge</a>
+        <div class="ms-auto">
+          <a href="controle.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium">
+            Soumettre un ticket
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenu Principal -->
+    <main class="container my-auto py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+
+            <!-- Bouton de retour rapide -->
+      <div class="mb-3">
+        <a href="index.html" class="btn btn-sm btn-light border text-secondary fw-semibold rounded-pill px-3">
+          ← Retour à l'accueil
+        </a>
+      </div>
+          
+          <!-- Carte Principale -->
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white card-status-container">
+            <div class="card-body p-4 p-md-5">
+              
+              <!-- En-tête de section avec badge -->
+              <div class="text-center mb-4">
+                <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
+                  🔍 Vérification en ligne
+                </span>
+                <h2 class="fw-bold mb-2 text-dark">Suivi & Statut de Ticket</h2>
+                <p class="text-muted small">
+                  Saisissez le code de votre coupon ou votre adresse e-mail pour consulter immédiatement l'état de votre traitement.
+                </p>
+              </div>
+
+              <!-- Formulaire de recherche interactif -->
+              <form id="statusForm" class="row g-2 mb-4">
+                <div class="col-sm-8">
+                  <div class="search-input-group">
+                    <span class="search-icon">🔎</span>
+                    <input 
+                      type="text" 
+                      id="query" 
+                      class="form-control form-control-lg fs-6 rounded-3 bg-light border" 
+                      placeholder="Ex: TCK-123456 ou email@domaine.com" 
+                      required 
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4 d-grid">
+                  <button class="btn btn-primary btn-lg fs-6 fw-bold rounded-3 btn-search-action shadow-sm" type="submit" id="btnSearch">
+                    <span id="btnText">Rechercher</span>
+                    <span id="btnSpinner" class="spinner-border spinner-border-sm d-none ms-1" role="status" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Zone d'affichage dynamique des résultats -->
+              <div id="result" class="pt-2"></div>
+
+            </div>
+          </div>
+
+          <!-- Encadré de réassurance sous la carte -->
+          <div class="text-center mt-4">
+            <p class="text-muted small">
+              🔒 Vos données sont protégées. En cas de doute, contactez le support.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="site-footer bg-dark text-white text-center py-3 mt-auto border-top border-secondary border-opacity-25">
+      <div class="container">
+        <p class="mb-0 small text-white-50">&copy; 2026 Jacques Recharge. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="assets/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

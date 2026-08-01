@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Statut du ticket - Jacques Recharge</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <!-- Style personnalisé -->
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.html"
+          >💳 Jacques Recharge</a
+        >
+        <div class="ms-auto">
+          <a
+            href="controle.html"
+            class="btn btn-outline-light btn-sm rounded-pill px-3"
+            >Soumettre un ticket</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenu Principal -->
+    <main class="container my-auto py-5">
+      <!-- Bouton de retour rapide -->
+      <div class="mb-3">
+        <a
+          href="index.html"
+          class="btn btn-sm btn-light border text-secondary fw-semibold rounded-pill px-3"
+        >
+          ← Retour à l'accueil
+        </a>
+      </div>
+      <div class="row g-4 align-items-stretch justify-content-center">
+        <!-- BLOC GAUCHE : Visuel, Titre et Texte de Confiance (Dynamique) -->
+        <div class="col-lg-5 col-md-6">
+          <div
+            class="card border-0 shadow-sm rounded-4 h-100 p-4 d-flex flex-column justify-content-between text-center bg-white"
+          >
+            <div>
+              <span
+                class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill fw-bold"
+                >Vérification Officielle</span
+              >
+              <h3 id="cardTitle" class="fw-bold mb-3 text-dark">Neosurf</h3>
+
+              <!-- Conteneur d'image -->
+              <div
+                class="d-flex align-items-center justify-content-center my-4"
+                style="min-height: 140px"
+              >
+                <img
+                  id="cardImage"
+                  src="assets/image/neosurf.png"
+                  alt="Logo Carte"
+                  class="img-fluid"
+                  style="max-height: 120px; object-fit: contain"
+                />
+              </div>
+            </div>
+
+            <!-- Encadré Réassurance / Confiance -->
+            <div class="p-3 bg-light rounded-3 border text-start">
+              <div class="d-flex align-items-center mb-2">
+                <span class="fs-5 me-2">🛡️</span>
+                <strong class="text-dark small">Sécurité & Authenticité</strong>
+              </div>
+              <p
+                id="cardTrustText"
+                class="text-muted extra-small mb-0 leading-sm"
+              >
+                Vos recharges Neosurf sont vérifiées en temps réel via des
+                protocoles sécurisés. Vos codes sont protégés et conservent
+                toute leur valeur jusqu'à leur utilisation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOC DROITE : Formulaire de Recherche & Résultats -->
+        <div class="col-lg-6 col-md-6">
+          <div
+            class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5 bg-white d-flex flex-column justify-content-center"
+          >
+            <div class="mb-4">
+              <h2 class="fw-bold mb-1 fs-3">Consulter le statut</h2>
+              <p class="text-muted small">
+                Saisissez votre code de rechargement ou l'adresse e-mail
+                associée.
+              </p>
+            </div>
+
+            <!-- Formulaire -->
+            <form id="statusForm" class="row g-2 mb-3">
+              <div class="col-12">
+                <label
+                  for="query"
+                  class="form-label small fw-semibold text-muted"
+                  >Code du ticket ou E-mail</label
+                >
+                <input
+                  type="text"
+                  id="query"
+                  class="form-control form-control-lg fs-6 rounded-3"
+                  placeholder="Ex: NS-987654 ou votre@email.com"
+                  required
+                />
+              </div>
+              <div class="col-12 mt-3">
+                <button
+                  class="btn btn-primary btn-lg w-100 fs-6 fw-semibold rounded-3"
+                  type="submit"
+                  id="btnSearch"
+                >
+                  <span id="btnText">Rechercher le statut</span>
+                  <span
+                    id="btnSpinner"
+                    class="spinner-border spinner-border-sm d-none"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+            </form>
+
+            <!-- Zone de résultats -->
+            <div id="result" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="site-footer bg-dark text-white text-center py-3 mt-auto">
+      <div class="container">
+        <p class="mb-0 small text-white-50">
+          &copy; 2026 Jacques Recharge. Tous droits réservés.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="assets/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de dynamique Carte + Reconstitution -->
+    <script src="assets/main.js"></script>
+  </body>
+</html>

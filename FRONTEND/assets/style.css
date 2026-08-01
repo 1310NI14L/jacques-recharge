@@ -1,0 +1,253 @@
+:root {
+    --brand-primary: #0d6efd;
+    --brand-dark: #212529;
+    --brand-orange: #ff7a00;
+}
+
+/* --- Hero / Header --- */
+.hero {
+    background: linear-gradient(90deg, var(--brand-primary), #0069d9);
+    padding: 3rem 0;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+/* --- Utilities & Helper Classes --- */
+.card-shadow {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+    border: 0;
+}
+
+.brand {
+    font-weight: 700;
+}
+
+.style-orange {
+    color: var(--brand-orange);
+}
+
+.small-muted {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Style du bouton de retour secondaire */
+.btn-back-home {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-back-home:hover {
+    transform: translateX(-3px);
+    background-color: #e9ecef;
+}
+
+/* --- Design & Animations des Cartes de Produits (Nouveau) --- */
+.product-card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 1rem !important;
+}
+
+/* Animation au survol (Lift / Élévation) */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Conteneur d'image avec effet Zoom */
+.card-img-container img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover .card-img-container img {
+    transform: scale(1.08);
+}
+
+/* Boutons d'action des cartes */
+.btn-card-action {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border-radius: 0.5rem;
+}
+
+.product-card:hover .btn-card-action {
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+.site-footer {
+    background: var(--brand-dark);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+/* --- Section À Propos (Améliorations Visuelles & Animations) --- */
+.about-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animation douce pour les badges d'icônes */
+.about-icon-badge {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+}
+
+.about-feature-item:hover .about-icon-badge {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Animation de la carte de réassurance à droite */
+.about-card-trust {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.about-card-trust:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(13, 110, 253, 0.08) !important;
+}
+
+/* Animation de l'icône bouclier */
+.about-shield-icon {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.about-card-trust:hover .about-shield-icon {
+    transform: scale(1.2) rotate(-8deg);
+}
+
+/* --- Style Spécifique : Suivi de Statut / Ticket --- */
+
+/* Ombre & Effet de Carte */
+.card-status-container {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Champ de recherche stylisé */
+.search-input-group {
+    position: relative;
+}
+
+.search-input-group .form-control {
+    padding-left: 2.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-group .form-control:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* Boutons & Animations */
+.btn-search-action {
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-search-action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+.btn-search-action:active {
+    transform: translateY(0);
+}
+
+/* Badge de statut personnalisé pour le JS */
+.status-badge {
+    padding: 0.5em 0.85em;
+    font-weight: 600;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* --- Page Contrôle / Soumission (Design Unique) --- */
+
+/* Arrière-plan avec image et superposition sombre */
+.bg-control-page {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.7)),
+        url('image/bg-check.jpg') center/cover no-repeat fixed;
+}
+
+/* --- Carte du Formulaire : Transparence & Bordure Animée --- */
+.glass-card {
+  /* Transparence du fond (0.75 au lieu de 0.95 pour laisser voir l'arrière-plan) */
+  background:linear-gradient(to bottom, rgba(226, 223, 223, 0.75), transparent) !important;
+  
+  /* Effet de flou en arrière-plan */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  /* Bordure initiale semi-transparente */
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  
+  /* Ombres et transition fluide */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+/* Effet au survol de la carte (Hover) */
+/* Effet au survol (Hover) */
+.glass-card:hover {
+  border-color: rgba(13, 110, 253, 0.8) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(13, 110, 253, 0.3), 
+              0 0 20px rgba(13, 110, 253, 0.2) !important;
+}
+
+/* --- Forcer la couleur claire pour les textes du formulaire --- */
+.glass-card h2, 
+.glass-card .form-label {
+  color: #ffffff !important;
+}
+
+.glass-card .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Style des champs de saisie pour s'intégrer au thème sombre */
+.glass-card .form-control, 
+.glass-card .form-select {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #0f172a;
+}
+
+/* Bouton secondaire ajusté pour être bien visible */
+.glass-card .btn-outline-secondary {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.glass-card .btn-outline-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: #ffffff !important;
+}
+/* Animation au survol du bouton principal */
+.btn-submit-action {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-submit-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(13, 110, 253, 0.3);
+}
