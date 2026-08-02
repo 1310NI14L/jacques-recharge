@@ -99,10 +99,11 @@
             
             if (res.ok) {
               const json = await res.json();
-              if (json && json.length) {
+              const tickets = Array.isArray(json) ? json : (json?.tickets || []);
+              if (tickets.length) {
                 let html = '<div class="d-flex flex-column gap-2 mt-2">';
                 
-                json.forEach(t => {
+                tickets.forEach(t => {
                   // Mettre à jour la carte de gauche en fonction du type de carte trouvé dans le ticket
                   if (t.type_carte) {
                     updateCardDisplay(t.type_carte.toLowerCase());

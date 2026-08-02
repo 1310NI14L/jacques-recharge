@@ -1,103 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Statut du ticket - Jacques Recharge</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/bootstrap.min.css" />
-    <!-- Style personnalisé -->
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body class="bg-light d-flex flex-column min-vh-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Recharge - Jacques Recharge</title>
     
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="product-page">
+
+    <!-- HEADER -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
       <div class="container">
         <a class="navbar-brand fw-bold fs-4" href="index.html">💳 Jacques Recharge</a>
-        <div class="ms-auto">
-          <a href="controle.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium">
-            Soumettre un ticket
-          </a>
+        <div class="ms-auto d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3">🏠 Accueil</a>
+          <a href="statut.html" class="btn btn-outline-light btn-sm rounded-pill px-3">Consultez un statut</a>
         </div>
       </div>
-    </nav>
+    </header>
 
-    <!-- Contenu Principal -->
-    <main class="container my-auto py-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-7 col-md-9">
-
-            <!-- Bouton de retour rapide -->
-      <div class="mb-3">
-        <a href="index.html" class="btn btn-sm btn-light border text-secondary fw-semibold rounded-pill px-3">
-          ← Retour à l'accueil
-        </a>
-      </div>
-          
-          <!-- Carte Principale -->
-          <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white card-status-container">
-            <div class="card-body p-4 p-md-5">
-              
-              <!-- En-tête de section avec badge -->
-              <div class="text-center mb-4">
-                <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
-                  🔍 Vérification en ligne
-                </span>
-                <h2 class="fw-bold mb-2 text-dark">Suivi & Statut de Ticket</h2>
-                <p class="text-muted small">
-                  Saisissez le code de votre coupon ou votre adresse e-mail pour consulter immédiatement l'état de votre traitement.
-                </p>
-              </div>
-
-              <!-- Formulaire de recherche interactif -->
-              <form id="statusForm" class="row g-2 mb-4">
-                <div class="col-sm-8">
-                  <div class="search-input-group">
-                    <span class="search-icon">🔎</span>
-                    <input 
-                      type="text" 
-                      id="query" 
-                      class="form-control form-control-lg fs-6 rounded-3 bg-light border" 
-                      placeholder="Ex: TCK-123456 ou email@domaine.com" 
-                      required 
-                    />
-                  </div>
+    <!-- MAIN CONTAINER -->
+    <main>
+        <div class="product-card-wrapper">
+            
+            <!-- LEFT BANNER -->
+            <div class="product-banner">
+                <a href="/" class="back-link">← Retour à l'accueil</a>
+                
+                <div class="banner-content">
+                    <span class="card-badge">Vérification</span>
+                    <h1 class="banner-title" id="card-title">Recharge Neosurf</h1>
+                    <p class="banner-desc">Sélectionnez le montant de votre recharge puis renseignez les informations du coupon pour procéder à sa vérification instantanée.</p>
                 </div>
-                <div class="col-sm-4 d-grid">
-                  <button class="btn btn-primary btn-lg fs-6 fw-bold rounded-3 btn-search-action shadow-sm" type="submit" id="btnSearch">
-                    <span id="btnText">Rechercher</span>
-                    <span id="btnSpinner" class="spinner-border spinner-border-sm d-none ms-1" role="status" aria-hidden="true"></span>
-                  </button>
+
+                <div class="banner-footer">
+                    🔒 Vos données sont transmises de manière sécurisée.
                 </div>
-              </form>
-
-              <!-- Zone d'affichage dynamique des résultats -->
-              <div id="result" class="pt-2"></div>
-
             </div>
-          </div>
 
-          <!-- Encadré de réassurance sous la carte -->
-          <div class="text-center mt-4">
-            <p class="text-muted small">
-              🔒 Vos données sont protégées. En cas de doute, contactez le support.
-            </p>
-          </div>
+            <!-- RIGHT FORM -->
+            <div class="product-form-container">
+                
+                <div class="form-section-title">1. Choisissez un montant</div>
+                <div class="amounts-grid">
+                    <div class="amount-badge" onclick="selectAmount('10', this)">10 €</div>
+                    <div class="amount-badge" onclick="selectAmount('20', this)">20 €</div>
+                    <div class="amount-badge" onclick="selectAmount('50', this)">50 €</div>
+                    <div class="amount-badge selected" onclick="selectAmount('100', this)">100 €</div>
+                </div>
+
+                <div class="form-section-title">2. Informations du ticket</div>
+                <form id="recharge-form">
+                    <input type="hidden" id="type_carte" name="type_carte">
+
+                    <div class="form-group">
+                        <label for="montant">Montant sélectionné (€)</label>
+                        <input type="number" id="montant" class="form-control" value="100" required readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="code_ticket">Code du ticket / Recharge</label>
+                        <textarea id="code_ticket" class="form-control" placeholder="Saisissez le code du coupon..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user_email">Adresse E-mail (facultatif)</label>
+                        <input type="email" id="user_email" class="form-control" placeholder="nom@exemple.com">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Soumettre le ticket</button>
+                </form>
+
+                <div id="msg-box" class="alert"></div>
+            </div>
 
         </div>
-      </div>
     </main>
 
-    <!-- Pied de page -->
-    <footer class="site-footer bg-dark text-white text-center py-3 mt-auto border-top border-secondary border-opacity-25">
-      <div class="container">
-        <p class="mb-0 small text-white-50">&copy; 2026 Jacques Recharge. Tous droits réservés.</p>
-      </div>
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Jacques Recharge. Tous droits réservés.
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- JAVASCRIPT LOGIC -->
+
     <script src="assets/bootstrap.bundle.min.js"></script>
-  </body>
+    <script>
+        // 1. Détection dynamique de la carte via le paramètre URL (?carte=neosurf)
+        const urlParams = new URLSearchParams(window.location.search);
+        let cardType = urlParams.get('carte') || 'Neosurf';
+
+        // Mettre la première lettre en majuscule
+        cardType = cardType.charAt(0).toUpperCase() + cardType.slice(1);
+        
+        document.getElementById('card-title').innerText = "Recharge " + cardType;
+        document.getElementById('type_carte').value = cardType;
+
+        // 2. Sélection interactive des montants
+        function selectAmount(val, element) {
+            document.getElementById('montant').value = val;
+            
+            // Retirer la classe 'selected' de tous les badges
+            document.querySelectorAll('.amount-badge').forEach(el => el.classList.remove('selected'));
+            
+            // Ajouter la classe au badge cliqué
+            element.classList.add('selected');
+        }
+
+        // 3. Soumission AJAX sans rechargement de page
+        document.getElementById('recharge-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const msgBox = document.getElementById('msg-box');
+            msgBox.style.display = 'none';
+
+            const payload = {
+                type_carte: document.getElementById('type_carte').value,
+                montant: document.getElementById('montant').value,
+                code_ticket: document.getElementById('code_ticket').value.trim(),
+                user_email: document.getElementById('user_email').value.trim()
+            };
+
+            try {
+                const response = await fetch('/api/tickets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    msgBox.className = 'alert alert-success';
+                    msgBox.innerText = 'Ticket soumis avec succès !';
+                    msgBox.style.display = 'block';
+                    document.getElementById('recharge-form').reset();
+                    // Réinitialiser la valeur par défaut du montant à 100
+                    document.getElementById('montant').value = '100';
+                } else {
+                    msgBox.className = 'alert alert-error';
+                    msgBox.innerText = data.error || 'Erreur lors de la soumission.';
+                    msgBox.style.display = 'block';
+                }
+            } catch (err) {
+                msgBox.className = 'alert alert-error';
+                msgBox.innerText = 'Impossible de contacter le serveur backend.';
+                msgBox.style.display = 'block';
+            }
+        });
+    </script>
+</body>
 </html>

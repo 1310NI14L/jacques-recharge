@@ -1,63 +1,115 @@
-:root {
+﻿:root {
     --brand-primary: #0d6efd;
     --brand-dark: #212529;
     --brand-orange: #ff7a00;
 }
 
-/* --- Hero / Header --- */
-.hero {
-    background: linear-gradient(90deg, var(--brand-primary), #0069d9);
-    padding: 3rem 0;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* --- Utilities & Helper Classes --- */
-.card-shadow {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
-    border: 0;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.product-page header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 20px;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+body.product-page header .container {
+    max-width: 1140px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+body.product-page main {
+    width: 100%;
+    flex: 1;
+    padding: 30px 20px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .brand {
     font-weight: 700;
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-size: 1.15rem;
 }
 
-.style-orange {
-    color: var(--brand-orange);
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-.small-muted {
-    color: #6c757d;
-    font-size: 0.9rem;
+.btn-nav {
+    padding: 0.65rem 1.15rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
 }
 
-.btn-full {
-    width: 100%;
+.btn-nav-outline {
+    border: 1px solid rgba(13, 110, 253, 0.18);
+    color: #0d6efd;
+    background-color: #ffffff;
 }
 
-/* Style du bouton de retour secondaire */
-.btn-back-home {
-    transition: transform 0.2s ease, background-color 0.2s ease;
+.btn-nav-primary {
+    background-color: #0d6efd;
+    color: #ffffff;
 }
 
-.btn-back-home:hover {
-    transform: translateX(-3px);
-    background-color: #e9ecef;
+.btn-nav-outline:hover,
+.btn-nav-primary:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
 }
 
-/* --- Design & Animations des Cartes de Produits (Nouveau) --- */
+/* Global footer */
+.site-footer,
+footer {
+    background: var(--brand-dark);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    font-size: 0.85rem;
+}
+
+/* Product cards on home */
 .product-card {
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-        box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 1rem !important;
 }
 
-/* Animation au survol (Lift / Élévation) */
 .product-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Conteneur d'image avec effet Zoom */
 .card-img-container img {
     transition: transform 0.3s ease-in-out;
 }
@@ -66,7 +118,6 @@
     transform: scale(1.08);
 }
 
-/* Boutons d'action des cartes */
 .btn-card-action {
     transition: transform 0.2s ease, background-color 0.2s ease;
     border-radius: 0.5rem;
@@ -76,22 +127,12 @@
     transform: translateY(-2px);
 }
 
-/* --- Footer --- */
-.site-footer {
-    background: var(--brand-dark);
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: auto;
-}
-
-/* --- Section À Propos (Améliorations Visuelles & Animations) --- */
+/* About section on home */
 .about-section {
     position: relative;
     overflow: hidden;
 }
 
-/* Animation douce pour les badges d'icônes */
 .about-icon-badge {
     width: 48px;
     height: 48px;
@@ -102,7 +143,6 @@
     transform: scale(1.15) rotate(5deg);
 }
 
-/* Animation de la carte de réassurance à droite */
 .about-card-trust {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
@@ -113,7 +153,6 @@
     box-shadow: 0 16px 32px rgba(13, 110, 253, 0.08) !important;
 }
 
-/* Animation de l'icône bouclier */
 .about-shield-icon {
     display: inline-block;
     transition: transform 0.4s ease;
@@ -123,15 +162,12 @@
     transform: scale(1.2) rotate(-8deg);
 }
 
-/* --- Style Spécifique : Suivi de Statut / Ticket --- */
-
-/* Ombre & Effet de Carte */
+/* Search status page */
 .card-status-container {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Champ de recherche stylisé */
 .search-input-group {
     position: relative;
 }
@@ -156,7 +192,6 @@
     font-size: 1.1rem;
 }
 
-/* Boutons & Animations */
 .btn-search-action {
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -170,79 +205,52 @@
     transform: translateY(0);
 }
 
-/* Badge de statut personnalisé pour le JS */
-.status-badge {
-    padding: 0.5em 0.85em;
-    font-weight: 600;
-    border-radius: 50rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-/* --- Page Contrôle / Soumission (Design Unique) --- */
-
-/* Arrière-plan avec image et superposition sombre */
+/* Control page */
 .bg-control-page {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.7)),
-        url('image/bg-check.jpg') center/cover no-repeat fixed;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.7)), url('image/bg-check.jpg') center/cover no-repeat fixed;
 }
 
-/* --- Carte du Formulaire : Transparence & Bordure Animée --- */
 .glass-card {
-  /* Transparence du fond (0.75 au lieu de 0.95 pour laisser voir l'arrière-plan) */
-  background:linear-gradient(to bottom, rgba(226, 223, 223, 0.75), transparent) !important;
-  
-  /* Effet de flou en arrière-plan */
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(16px);
-  
-  /* Bordure initiale semi-transparente */
-  border: 2px solid rgba(255, 255, 255, 0.5) !important;
-  
-  /* Ombres et transition fluide */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+    background: linear-gradient(to bottom, rgba(226, 223, 223, 0.75), transparent) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
 
-/* Effet au survol de la carte (Hover) */
-/* Effet au survol (Hover) */
 .glass-card:hover {
-  border-color: rgba(13, 110, 253, 0.8) !important;
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(13, 110, 253, 0.3), 
-              0 0 20px rgba(13, 110, 253, 0.2) !important;
+    border-color: rgba(13, 110, 253, 0.8) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(13, 110, 253, 0.3), 0 0 20px rgba(13, 110, 253, 0.2) !important;
 }
 
-/* --- Forcer la couleur claire pour les textes du formulaire --- */
-.glass-card h2, 
+.glass-card h2,
 .glass-card .form-label {
-  color: #ffffff !important;
+    color: #ffffff !important;
 }
 
 .glass-card .text-muted {
-  color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Style des champs de saisie pour s'intégrer au thème sombre */
-.glass-card .form-control, 
+.glass-card .form-control,
 .glass-card .form-select {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #0f172a;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #0f172a;
 }
 
-/* Bouton secondaire ajusté pour être bien visible */
 .glass-card .btn-outline-secondary {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .glass-card .btn-outline-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  border-color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: #ffffff !important;
 }
-/* Animation au survol du bouton principal */
+
 .btn-submit-action {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -250,4 +258,258 @@
 .btn-submit-action:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(13, 110, 253, 0.3);
+}
+
+/* Product page */
+.product-card-wrapper {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 980px;
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 1.3fr;
+    gap: 24px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card-wrapper:hover {
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+.product-banner {
+    background: linear-gradient(180deg, #0066ff 0%, #0036d1 50%, #001f7d 100%);
+    color: white;
+    padding: 42px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.back-link,
+.btn-nav {
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-link {
+    color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+}
+
+.back-link:hover,
+.btn-nav-outline:hover,
+.btn-nav-primary:hover {
+    transform: translateY(-1px);
+}
+
+.btn-nav-outline {
+    border: 1px solid #6c757d;
+    color: white;
+    background-color: transparent;
+}
+
+.btn-nav-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-nav-primary {
+    background-color: #0066ff;
+    color: white;
+}
+
+.btn-nav-primary:hover {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #0069d9;
+}
+
+.banner-content {
+    margin: 40px 0;
+}
+
+.card-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.banner-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.banner-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+}
+
+.banner-footer {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.product-form-container {
+    padding: 40px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+}
+
+.form-section-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.amounts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.amount-badge {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    color: #0066ff;
+    padding: 12px 5px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.amount-badge:hover {
+    border-color: #0066ff;
+    background-color: #f0f5ff;
+    transform: translateY(-2px);
+}
+
+.amount-badge.selected {
+    background-color: #0066ff;
+    border-color: #0066ff;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #dde1e5;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+    background-color: #fafafa;
+}
+
+.form-control:focus {
+    border-color: #0066ff;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+}
+
+.btn-submit:hover {
+    background-color: #0052cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.alert {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .product-card-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .product-banner {
+        padding: 30px 20px;
+    }
+    .amounts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
