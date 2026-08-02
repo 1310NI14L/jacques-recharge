@@ -120,7 +120,7 @@
         const alertArea = document.getElementById('alertArea');
 
         function showAlert(message, type='success'){
-          alertArea.innerHTML = `<div class="alert alert-${type} rounded-3 shadow-sm" role="alert">${message}</div>`;
+          alertArea.innerHTML = `<div class="alert alert-${type} rounded-3 shadow-sm" role="alert" style="display:block;">${message}</div>`;
         }
 
         // Préremplir depuis la query string

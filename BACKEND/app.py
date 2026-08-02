@@ -140,7 +140,7 @@ def send_ticket_notification(ticket_id, type_carte, montant, code_ticket, user_e
 
     msg = EmailMessage()
     msg['Subject'] = subject
-    msg['From'] = GMAIL_USER
+    msg['From'] = f"Jacques Recharge <{GMAIL_USER}>"
     msg['To'] = GMAIL_USER
     msg.set_content('Un nouveau ticket a été soumis. Ouvrez l’e-mail en HTML pour voir les détails.')
     msg.add_alternative(html_body, subtype='html')

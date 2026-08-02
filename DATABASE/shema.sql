@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS tickets (
     INDEX idx_code_ticket (code_ticket),
     INDEX idx_user_email (user_email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+SELECT * FROM tickets;
