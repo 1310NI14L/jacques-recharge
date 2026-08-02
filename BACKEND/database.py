@@ -17,13 +17,14 @@ GMAIL_PASSWORD = os.getenv("GMAIL_PASSWORD")
 
 # 2. On crée le dictionnaire de connexion à partir des variables
 def get_db_connection():
-  return pymysql.connect(
-      host=os.getenv('DB_HOST', 'localhost'),
-      user=os.getenv('DB_USER', 'root'),
-      password=os.getenv('DB_PASSWORD', ''),
-      database=os.getenv('DB_NAME', 'recharge_db'),
-      cursorclass=pymysql.cursors.DictCursor,
-      charset='utf8mb4',
+    return pymysql.connect(
+        host=os.getenv('DB_HOST', 'localhost'),
+        user=os.getenv('DB_USER', 'root'),
+        password=os.getenv('DB_PASSWORD', ''),
+        database=os.getenv('DB_NAME', 'recharge_db'),
+        port=int(os.getenv('DB_PORT', 3306)),
+        cursorclass=pymysql.cursors.DictCursor,
+        charset='utf8mb4',
   )
 
 

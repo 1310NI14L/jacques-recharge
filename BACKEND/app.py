@@ -3,10 +3,12 @@ import ssl
 import pymysql
 from email.message import EmailMessage
 from flask import Flask, jsonify, request, send_from_directory
+from flask_cors import CORS
 # Import de la fonction de connexion et des identifiants Gmail depuis database.py
 from database import get_db_connection, GMAIL_USER, GMAIL_PASSWORD
 
 app = Flask(__name__, static_folder='../frontend', template_folder='../frontend')
+CORS(app)
 
 
 # --- ROUTES PAGES HTML ---
@@ -191,4 +193,4 @@ def check_status():
 
 if __name__ == '__main__':
     print('Serveur Flask demarre sur http://127.0.0.1:5000')
-    app.run(debug=True, port=5000)
+    app.run(port=5000)
