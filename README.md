@@ -1,4 +1,4 @@
-﻿# 💳 Jacques Recharge — Plateforme Web de Recharge & Contrôle de Tickets Prépayés
+﻿# 💳 CheckMyTicket — Plateforme Web de Recharge & Contrôle de Tickets Prépayés
 
 Application web 100 % Frontend (statique) conçue pour la soumission et la vérification de statut de coupons/tickets de recharge prépayés (PCS, Transcash, Neosurf, Paysafecard, Apple, SFR, Orange, Lycamobile, Roblox, etc.). 
 
@@ -64,7 +64,7 @@ Dans le tableau de bord EmailJS (**Email Templates** > **Edit Content** > mode *
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Notification - Jacques Recharge</title>
+  <title>Notification - CheckMyTicket</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Helvetica, Arial, sans-serif;">
 
