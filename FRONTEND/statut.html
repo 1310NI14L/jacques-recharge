@@ -1,156 +1,198 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Statut du ticket - Jacques Recharge</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/bootstrap.min.css" />
-    <!-- Style personnalisé -->
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
-  <body class="bg-light d-flex flex-column min-vh-100">
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="index.html"
-          >💳 Jacques Recharge</a
-        >
-        <div class="ms-auto">
-          <a
-            href="controle.html"
-            class="btn btn-outline-light btn-sm rounded-pill px-3"
-            >Soumettre un ticket</a
-          >
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statut du ticket - Jacques Recharge</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Style personnalisé -->
+  <link rel="stylesheet" href="assets/style.css" />
+  
+  <!-- Configuration & SDK EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="assets/emailjs.config.js"></script>
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+  <!-- Barre de navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="index.html"><i class="fa-regular fa-credit-card"></i>
+        <i class="fa-solid fa-rotate fa-spin"></i> Jacques Recharge</a>
+      <div class="ms-auto">
+        <a href="controle.html" class="btn btn-outline-light btn-sm rounded-pill px-3">Soumettre un ticket</a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Contenu Principal -->
-    <main class="container my-auto py-5">
-      <!-- Bouton de retour rapide -->
-      <div class="mb-3">
-        <a
-          href="index.html"
-          class="btn btn-sm btn-light border text-secondary fw-semibold rounded-pill px-3"
-        >
-          ← Retour à l'accueil
-        </a>
-      </div>
-      <div class="row g-4 align-items-stretch justify-content-center">
-        <!-- BLOC GAUCHE : Visuel, Titre et Texte de Confiance (Dynamique) -->
-        <div class="col-lg-5 col-md-6">
-          <div
-            class="card border-0 shadow-sm rounded-4 h-100 p-4 d-flex flex-column justify-content-between text-center bg-white"
-          >
-            <div>
-              <span
-                class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill fw-bold"
-                >Vérification Officielle</span
-              >
-              <h3 id="cardTitle" class="fw-bold mb-3 text-dark">Neosurf</h3>
+  <!-- Contenu Principal -->
+  <main class="container my-auto py-5">
+    <!-- Bouton de retour rapide -->
+    <div class="mb-3">
+      <a href="index.html" class="btn btn-sm btn-light border text-secondary fw-semibold rounded-pill px-3">
+        <i class="fa-solid fa-arrow-left me-2"></i>Retour à l'accueil
+      </a>
+    </div>
+    <div class="row g-4 align-items-stretch justify-content-center">
+      <!-- BLOC GAUCHE : Visuel, Titre et Texte de Confiance (Dynamique) -->
+      <div class="col-lg-5 col-md-6">
+        <div
+          class="card border-0 shadow-sm rounded-4 h-100 p-4 d-flex flex-column justify-content-between text-center bg-white">
+          <div>
+            <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill fw-bold">Vérification
+              Officielle</span>
+            <h3 id="cardTitle" class="fw-bold mb-3 text-dark">Vérification de Ticket</h3>
 
-              <!-- Conteneur d'image -->
-              <div
-                class="d-flex align-items-center justify-content-center my-4"
-                style="min-height: 140px"
-              >
-                <img
-                  id="cardImage"
-                  src="assets/image/neosurf.png"
-                  alt="Logo Carte"
-                  class="img-fluid"
-                  style="max-height: 120px; object-fit: contain"
-                />
-              </div>
-            </div>
-
-            <!-- Encadré Réassurance / Confiance -->
-            <div class="p-3 bg-light rounded-3 border text-start">
-              <div class="d-flex align-items-center mb-2">
-                <span class="fs-5 me-2">🛡️</span>
-                <strong class="text-dark small">Sécurité & Authenticité</strong>
-              </div>
-              <p
-                id="cardTrustText"
-                class="text-muted extra-small mb-0 leading-sm"
-              >
-                Vos recharges Neosurf sont vérifiées en temps réel via des
-                protocoles sécurisés. Vos codes sont protégés et conservent
-                toute leur valeur jusqu'à leur utilisation.
-              </p>
+            <!-- Conteneur d'image / Icône par défaut -->
+            <div id="cardImageContainer" class="d-flex align-items-center justify-content-center my-4" style="min-height: 140px">
+              <i id="defaultIcon" class="fa-solid fa-shield-halved text-primary display-1 opacity-75"></i>
+              <img id="cardImage" src="" alt="Logo Carte" class="img-fluid d-none" style="max-height: 120px; object-fit: contain" />
             </div>
           </div>
-        </div>
 
-        <!-- BLOC DROITE : Formulaire de Recherche & Résultats -->
-        <div class="col-lg-6 col-md-6">
-          <div
-            class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5 bg-white d-flex flex-column justify-content-center"
-          >
-            <div class="mb-4">
-              <h2 class="fw-bold mb-1 fs-3">Consulter le statut</h2>
-              <p class="text-muted small">
-                Saisissez votre code de rechargement ou l'adresse e-mail
-                associée.
-              </p>
+          <!-- Encadré Réassurance / Confiance -->
+          <div class="p-3 bg-light rounded-3 border text-start">
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa-solid fa-shield-halved fs-5 me-2 text-primary"></i>
+              <strong class="text-dark small">Sécurité & Authenticité</strong>
             </div>
-
-            <!-- Formulaire -->
-            <form id="statusForm" class="row g-2 mb-3">
-              <div class="col-12">
-                <label
-                  for="query"
-                  class="form-label small fw-semibold text-muted"
-                  >Code du ticket ou E-mail</label
-                >
-                <input
-                  type="text"
-                  id="query"
-                  class="form-control form-control-lg fs-6 rounded-3"
-                  placeholder="Ex: NS-987654 ou votre@email.com"
-                  required
-                />
-              </div>
-              <div class="col-12 mt-3">
-                <button
-                  class="btn btn-primary btn-lg w-100 fs-6 fw-semibold rounded-3"
-                  type="submit"
-                  id="btnSearch"
-                >
-                  <span id="btnText">Rechercher le statut</span>
-                  <span
-                    id="btnSpinner"
-                    class="spinner-border spinner-border-sm d-none"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                </button>
-              </div>
-            </form>
-
-            <!-- Zone de résultats -->
-            <div id="result" class="mt-2"></div>
+            <p id="cardTrustText" class="text-muted extra-small mb-0 leading-sm">
+              Toutes vos recharges et coupons sont contrôlés en temps réel via nos protocoles hautement sécurisés. Saisissez votre code ou adresse e-mail pour vérifier le statut de votre ticket.
+            </p>
           </div>
         </div>
       </div>
-    </main>
 
-    <!-- Pied de page -->
-    <footer class="site-footer bg-dark text-white text-center py-3 mt-auto">
-      <div class="container">
-        <p class="mb-0 small text-white-50">
-          &copy; 2026 Jacques Recharge. Tous droits réservés.
-        </p>
+      <!-- BLOC DROITE : Formulaire de Recherche & Résultats -->
+      <div class="col-lg-6 col-md-6">
+        <div
+          class="card border-0 shadow-sm rounded-4 h-100 p-4 p-md-5 bg-white d-flex flex-column justify-content-center">
+          <div class="mb-4">
+            <h2 class="fw-bold mb-1 fs-3">Consulter le statut</h2>
+            <p class="text-muted small">
+              Saisissez votre code de rechargement ou l'adresse e-mail
+              associée.
+            </p>
+          </div>
+
+          <!-- Formulaire -->
+          <form id="statutForm" class="row g-2 mb-3">
+            <div class="col-12">
+              <label for="query" class="form-label small fw-semibold text-muted">Code du ticket ou E-mail</label>
+              <input type="text" id="query" name="query" class="form-control form-control-lg fs-6 rounded-3"
+                placeholder="Ex: NS-987654 ou votre@email.com" required />
+            </div>
+            <div class="col-12 mt-3">
+              <button class="btn btn-primary btn-lg w-100 fs-6 fw-semibold rounded-3" type="submit" id="btnSearch">
+                <span id="btnText">Rechercher le statut</span>
+                <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status"
+                  aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Zone de résultats -->
+          <div id="feedback-message" class="mt-2"></div>
+          <div id="result" class="mt-2"></div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </main>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="assets/bootstrap.bundle.min.js"></script>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-4 text-start">
+          <h5 class="fw-bold text-white">Jacques Recharge</h5>
+          <p class="text-white-50 small mb-0">
+            Recharge instantanée et contrôle de tickets. Support 7j/7.
+          </p>
+        </div>
+        <div class="col-md-2">
+          <h6 class="fw-semibold text-white">Liens</h6>
+          <ul class="footer-links small mb-0">
+            <li>
+              <i class="fa-solid fa-house"></i><a href="index.html"
+                class="text-white-50 text-decoration-none">Accueil</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-paper-plane"></i><a href="controle.html"
+                class="text-white-50 text-decoration-none">Soumettre</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-search"></i><a href="statut.html"
+                class="text-white-50 text-decoration-none">Statut</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="fw-semibold text-white">Support</h6>
+          <p class="small text-white-50 mb-0">
+            <a href="mailto:supportjacquesrecharge2026@gmail.com"
+              class="text-white-50 text-decoration-none">supportjacquesrecharge2026@gmail.com</a>
+          </p>
+          <p class="small text-white-50 mb-0">Service client 7j/7</p>
+        </div>
+        <div class="col-md-3 text-end">
+          <h6 class="fw-semibold text-white">Suivez-nous</h6>
+          <div class="d-flex justify-content-end gap-2 mt-2">
+            <a href="mailto:supportjacquesrecharge2026@gmail.com" class="text-white"
+              title="Contactez-nous par e-mail"><i class="fa-solid fa-envelope fa-lg"></i></a>
+            <a href="controle.html" class="text-white" title="Soumettre un ticket"><i
+                class="fa-solid fa-paper-plane fa-lg"></i></a>
+            <a href="statut.html" class="text-white" title="Consulter un statut"><i
+                class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="border-secondary my-3" />
+      <div class="text-center small text-white-50">
+        &copy; 2026 Jacques Recharge. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
 
-    <!-- Script de dynamique Carte + Reconstitution -->
-    <script src="assets/main.js"></script>
-  </body>
+  <!-- Scripts JavaScript dans le bon ordre -->
+  <script src="assets/bootstrap.bundle.min.js"></script>
+  <script src="assets/main.js"></script>
+  <script src="assets/script.js"></script>
+  <script>
+    // Gestion dynamique du bloc gauche en fonction du paramètre URL "carte"
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const carte = urlParams.get('carte');
+
+      if (carte) {
+        updateLeftCard(carte);
+      }
+    });
+
+    function updateLeftCard(carteType) {
+      const cardTitle = document.getElementById('cardTitle');
+      const cardImage = document.getElementById('cardImage');
+      const defaultIcon = document.getElementById('defaultIcon');
+      const cardTrustText = document.getElementById('cardTrustText');
+
+      const carteKey = carteType.toLowerCase().trim();
+      const formattedTitle = carteType.charAt(0).toUpperCase() + carteType.slice(1);
+
+      cardTitle.innerText = "Recharge " + formattedTitle;
+      cardImage.src = `assets/image/${carteKey}.png`;
+      cardImage.alt = `Logo ${formattedTitle}`;
+      
+      // Masque l'icône par défaut et affiche l'image correspondante
+      defaultIcon.classList.add('d-none');
+      cardImage.classList.remove('d-none');
+
+      cardTrustText.innerText = `Vos recharges ${formattedTitle} sont contrôlées de manière ultra-sécurisée. Effectuez vos vérifications en toute tranquillité d'esprit sans révéler vos coordonnées bancaires.`;
+    }
+  </script>
+</body>
+
 </html>

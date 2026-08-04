@@ -1,0 +1,15 @@
+# Fichiers de configuration sensibles
+frontend/assets/emailjs.config.js
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dossiers d'éditeurs / IDE
+.vscode/
+.idea/
+
+# Logs et temporaires
+*.log
+.cache/

